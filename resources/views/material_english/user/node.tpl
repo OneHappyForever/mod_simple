@@ -53,7 +53,7 @@
 																</div>
 															</div>
 															<div class="tile-inner">
-																<div class="text-overflow"><font color="#B7B7B7">{$prefix}</font> | <i class="icon icon-lg">person</i> <strong><b><font color="red">{$node_alive[$prefix]}</font></b></strong> | <i class="icon icon-lg">build</i>  <font color="#CD96CD">{$node_method[$prefix]}</font> | <i class="icon icon-lg">traffic</i> {if isset($node_bandwidth[$prefix])==true}<font color="#C1CDC1">{$node_bandwidth[$prefix]}</font>{else}N/A{/if}</div>
+																<div class="text-overflow"><font color="#B7B7B7">{$prefix}</font> <!--| <i class="icon icon-lg">person</i> <strong><b><font color="red">{$node_alive[$prefix]}</font></b></strong>--> | <i class="icon icon-lg">build</i>  <font color="#CD96CD">{$node_method[$prefix]}</font> | <i class="icon icon-lg">traffic</i> {if isset($node_bandwidth[$prefix])==true}<font color="#C1CDC1">{$node_bandwidth[$prefix]}</font>{else}N/A{/if}</div>
 															</div>
 														</div>
 														<div class="collapsible-region collapse" id="heading{$node_order->$prefix}">
