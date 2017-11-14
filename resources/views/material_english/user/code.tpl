@@ -18,8 +18,8 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">Recharge Options</h1>
-				<p>All your transactions will be made public on the <a href="/user/donate">【Donations】</a> page. If you do not want your purchases to be made public, please make them annonymous by chaning the settings on the the <a href="/user/donate">【Donations】</a>page。</p>
+				<h1 class="content-heading">Recharge Your Account</h1>
+				<!-- <p>All your transactions will be made public on the <a href="/user/donate">【Donations】</a> page. If you do not want your purchases to be made public, please make them annonymous by chaning the settings on the the <a href="/user/donate">【Donations】</a>page。</p> -->
 				<h4 class="content-heading">Current account balance：{$user->money} CNY</h4>
 			</div>
 		</div>

@@ -217,7 +217,7 @@
 						</li>
 					</ul>
 				{else}
-					<span class="access-hide">未登录</span>
+					<span class="access-hide">Not Logged In</span>
 					<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar-001.jpg"></span>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
@@ -258,12 +258,12 @@
 									<i class="icon icon-lg">sync_problem</i>&nbsp;Edit My Account
 								</a>
 							</li>
-							
+							<!--
 							<li>
 								<a href="/user/invite">
 									<i class="icon icon-lg">loyalty</i>&nbsp;Invitation Codes
 								</a>
-							</li>
+							</li> -->
 							
 							<li>
 								<a href="/user/announcement">
@@ -271,7 +271,7 @@
 								</a>
 							</li>
 							
-							
+							<!--
 							{if $config['enable_donate']=='true'}
 							<li>
 								<a href="/user/donate">
@@ -280,7 +280,7 @@
 							</li>
 							{/if}
 							
-							
+							-->
 						</ul>
 						
 						
@@ -310,13 +310,14 @@
 								</a>
 							</li>
 						</ul>
+						<!--
 
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">Filtering</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_detect">
 							<li><a href="/user/detect"><i class="icon icon-lg">account_balance</i>&nbsp;Filtering rules</a></li>
 							<li><a href="/user/detect/log"><i class="icon icon-lg">assignment_late</i>&nbsp;Filtering record</a></li>
 						</ul>
-						
+						-->
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_trade">Help</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_trade">
 							{if $config['enable_wecenter']=='true'}

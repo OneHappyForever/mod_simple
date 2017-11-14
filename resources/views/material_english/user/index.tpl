@@ -241,10 +241,10 @@
 									<div class="card-inner margin-bottom-no">
 										<p class="card-heading">Account Details</p>
 										<dl class="dl-horizontal">
-											<p><dt>Account level</dt>
+											<p><dt>Account grade</dt>
 											<dd>{$user->class}</dd></p>
 
-											<p><dt>Level expiration date</dt>
+											<p><dt>Grade expiration date</dt>
 											<dd>{$user->class_expire}</dd></p>
 
 											<p><dt>Account expiration date</dt>
@@ -256,9 +256,10 @@
 											{else}
 											<dd>Not limited</dd>
 											{/if}</p>
-											
+											<!--
 											 <p><dt>Connected devices</dt>
 											<dd>{$user->online_ip_count()}</dd></p>
+											-->
                                           
                                             <p><dt>Limit on number of simultaneous connections</dt>
 											{if $user->node_connector!=0}
@@ -266,9 +267,11 @@
 											{else}
                                             <dd>No limit</dd>
 											{/if}</p>
+											<!--
 
 											<p><dt>Last connected</dt>
 											<dd>{$user->lastSsTime()}</dd></p>
+											-->
 										</dl>
 									</div>
 

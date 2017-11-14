@@ -19,7 +19,7 @@
 		<div class="content-header ui-content-header">
 			<div class="container">
 				<h1 class="content-heading">请选择一种方式进行充值</h1>
-				<p>充值后会在<a href="/user/donate">【捐赠公示】</a>中公示，如不想公示可以在<a href="/user/donate">【捐赠公示】</a>中修改设置为匿名。</p>
+				<!--<p>充值后会在<a href="/user/donate">【捐赠公示】</a>中公示，如不想公示可以在<a href="/user/donate">【捐赠公示】</a>中修改设置为匿名。</p>-->
 				<h4 class="content-heading">当前余额：{$user->money} 元</h4>
 			</div>
 		</div>

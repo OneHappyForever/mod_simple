@@ -228,6 +228,7 @@
 
 					<div class="col-lg-6 col-md-6">
 
+						<!--
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -244,6 +245,7 @@
 								</div>
 							</div>
 						</div>
+						-->
 
 
 
@@ -273,6 +275,7 @@
 
 
 
+						<!--
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -317,6 +320,7 @@
 								</div>
 							</div>
 						</div>
+						-->
 
 						<div class="card margin-bottom-no">
 							<div class="card-main">
@@ -335,6 +339,7 @@
 							</div>
 						</div>
 
+						<!--
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
@@ -357,6 +362,7 @@
 								</div>
 							</div>
 						</div>
+						-->
 
 						{if $config['enable_telegram'] == 'true'}
 						<div class="card margin-bottom-no">
