@@ -26,7 +26,7 @@ class Shop extends Model
                     $content_text .= "Your grade will be upgraded to ".$value." , and will be active for ".$content["class_expire"]." days";
                     break;
                 case "reset":
-                    $content_text .= " Every ".$value." days your data will be reset to ".$content["reset_value"]." GBs. This data will expire and reset after ".$content["reset_exp"]." days ";
+                    $content_text .= " Every ".$value." days your data will be reset to ".$content["reset_value"]." GBs. ";
                     break;
                 default:
             }
