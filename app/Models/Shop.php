@@ -17,16 +17,16 @@ class Shop extends Model
         foreach ($content as $key=>$value) {
             switch ($key) {
                 case "bandwidth":
-                    $content_text .= "Add ".$value." G ";
+                    $content_text .= "You will receive ".$value." GBs data at the beginning of your subscription period ";
                     break;
                 case "expire":
-                    $content_text .= "Subscription length plus ".$value." days ";
+                    $content_text .= "Your subscription will be lengthened by ".$value." days ";
                     break;
                 case "class":
-                    $content_text .= "Grade upgraded to ".$value." ,active for ".$content["class_expire"]." days";
+                    $content_text .= "Your grade will be upgraded to ".$value." , and will be active for ".$content["class_expire"]." days";
                     break;
                 case "reset":
-                    $content_text .= " 在 ".$content["reset_exp"]." 天内，每 ".$value." 天重置流量为 ".$content["reset_value"]." G ";
+                    $content_text .= " Every ".$value." days your data will be reset to ".$content["reset_value"]." GBs. This data will expire and reset after ".$content["reset_exp"]." days ";
                     break;
                 default:
             }
