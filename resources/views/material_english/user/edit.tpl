@@ -91,7 +91,7 @@
 									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
-											<button disabled="disabled" class="btn btn-flat waves-attach" id="method-update" ><span class="icon">check</span>&nbsp;submit</button>
+											<button class="btn btn-flat waves-attach" id="method-update" ><span class="icon">check</span>&nbsp;submit</button>
 										</div>
 									</div>
 								</div>
@@ -186,7 +186,7 @@
 
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
-											<button disabled="disabled" class="btn btn-flat waves-attach" id="ssr-update" ><span class="icon">check</span>&nbsp;submit</button>
+											<button class="btn btn-flat waves-attach" id="ssr-update" ><span class="icon">check</span>&nbsp;submit</button>
 										</div>
 									</div>
 								</div>
