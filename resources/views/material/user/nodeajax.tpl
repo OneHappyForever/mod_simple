@@ -74,7 +74,7 @@
 					]
 			});
 			
-			/* {$load=$point_node->getNodeAlive()}
+			 {$load=$point_node->getNodeAlive()}
 			alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
 			{
 				title:{
@@ -110,7 +110,7 @@
 				}
 				]
 			});
-			*/
+			
 			
 			
 			
