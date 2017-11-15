@@ -56,15 +56,15 @@ class Pay
 						<p class="card-heading">Recharge with Alipay</p>
 						<label for="number">Select recharge amount：</label>
 						<select id="type" class="form-control" name="amount">
-							<option value="10">10元</option>
-							<option value="20">20元</option>
-							<option value="50">50元</option>
-							<option value="70">70元</option>
-							<option value="100">100元</option>
-							<option value="150">150元</option>
-							<option value="200">200元</option>
-							<option value="250">250元</option>
-							<option value="400">400元</option>
+							<option value="10">10 CNY</option>
+							<option value="20">20 CNY</option>
+							<option value="50">50 CNY</option>
+							<option value="70">70 CNY</option>
+							<option value="100">100 CNY</option>
+							<option value="150">150 CNY</option>
+							<option value="200">200 CNY</option>
+							<option value="250">250 CNY</option>
+							<option value="400">400 CNY</option>
 						</select>
 						<p></p>
 						<a class="btn btn-flat waves-attach" id="urlChange" ><span class="icon">check</span>&nbsp;Recharge</a>
@@ -83,20 +83,20 @@ class Pay
         // <option value="8">8元(月卡)</option>
 
         return '
-						<p class="card-heading">点击对应支付方式进行充值</p>
-						<label for="number">请选择充值金额：</label>
+						<p class="card-heading">Please select a payment method.</p>
+						<label for="number">Recharge amount：</label>
        					<form name="alipayment" action="/assets/91pay/91pay.php" method="post">
 						<select class="form-control" id="price" name="price">
-                        <option value="1">1元(用于测试本站实时到账功能)</option>
-                        <option value="10">10元</option>
-                        <option value="20">20元</option>
-                        <option value="50">50元</option>
-			<option value="70">70元</option>
-                        <option value="100">100元</option>
-			<option value="150">150元</option>
-                        <option value="200">200元</option>
-			<option value="250">250元</option>
-			<option value="400">400元</option>
+                        <option value="1">1 CNY(For testing purposes)</option>
+                        <option value="10">10 CNY</option>
+                        <option value="20">20 CNY</option>
+                        <option value="50">50 CNY</option>
+			<option value="70">70 CNY</option>
+                        <option value="100">100 CNY</option>
+			<option value="150">150 CNY</option>
+                        <option value="200">200 CNY</option>
+			<option value="250">250 CNY</option>
+			<option value="400">400 CNY</option>
                         </select>
                         <br>
                         <input type="hidden" name="user" value="'.$user->id.'">
