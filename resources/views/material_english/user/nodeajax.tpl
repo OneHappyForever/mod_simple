@@ -76,42 +76,42 @@
 			
 			
 			{$load=$point_node->getNodeAlive()}
-			/*alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
-			/{
-			/	title:{
-			/		text: "Number of connected users during the last 24 hours for {$prefix}"
-			/	},
-			/	data: [
-			/	{
-			/		type: "line", 
-			/		dataPoints: [
-			/			{$i=0}
-			/			{foreach $load as $single_load}
-			/				{if $i==0}
-			/					{literal}
-			/					{
-			/					{/literal}
-			/						x: new Date({$single_load->log_time*1000}), y:{$single_load->online_user}
-			/					{literal}
-			/					}
-			/					{/literal}
-			/					{$i=1}
-			/				{else}
-			/					{literal}
-			/					,{
-			/					{/literal}
-			/						x: new Date({$single_load->log_time*1000}), y:{$single_load->online_user}
-			/					{literal}
-			/					}
-			/					{/literal}
-			/				{/if}
-			/			{/foreach}
-			/			
-			/		]
-			/	}
-			/	]
-			/});
-			*/
+			alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
+			{
+				title:{
+					text: "Number of connected users during the last 24 hours for {$prefix}"
+				},
+				data: [
+				{
+					type: "line", 
+					dataPoints: [
+						{$i=0}
+						{foreach $load as $single_load}
+							{if $i==0}
+								{literal}
+								{
+								{/literal}
+									x: new Date({$single_load->log_time*1000}), y:{$single_load->online_user}
+								{literal}
+								}
+								{/literal}
+								{$i=1}
+							{else}
+								{literal}
+								,{
+								{/literal}
+									x: new Date({$single_load->log_time*1000}), y:{$single_load->online_user}
+								{literal}
+								}
+								{/literal}
+							{/if}
+						{/foreach}
+						
+					]
+				}
+				]
+			});
+			
 			
 			
 			{$speedtests=$point_node->getSpeedtestResult()}
@@ -409,7 +409,7 @@
 				
 			chart{$id}.render();
 			up_chart{$id}.render();
-			alive_chart{$id}.render();
+			/*alive_chart{$id}.render();*/
 			speedtest_chart{$id}.render();
 			speedtest_ping_chart{$id}.render();
 			
