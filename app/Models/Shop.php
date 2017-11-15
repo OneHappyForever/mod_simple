@@ -32,13 +32,13 @@ class Shop extends Model
             }
 
             if ($i<count($content)&&$key!="reset_exp") {
-                $content_text .= ";";
+                $content_text .= "";
             }
 
             $i++;
         }
 
-        if (substr($content_text, -1, 1)==",") {
+        if (substr($content_text, -1, 1)==";") {
             $content_text=substr($content_text, 0, -1);
         }
 
