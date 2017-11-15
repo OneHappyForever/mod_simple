@@ -32,7 +32,7 @@ class Shop extends Model
             }
 
             if ($i<count($content)&&$key!="reset_exp") {
-                $content_text .= ",";
+                $content_text .= ";";
             }
 
             $i++;
