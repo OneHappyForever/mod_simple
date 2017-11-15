@@ -75,8 +75,8 @@
 			});
 			
 			
-			/*{$load=$point_node->getNodeAlive()}
-			/alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
+			{$load=$point_node->getNodeAlive()}
+			/*alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
 			/{
 			/	title:{
 			/		text: "Number of connected users during the last 24 hours for {$prefix}"
