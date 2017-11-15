@@ -74,7 +74,7 @@
 					]
 			});
 			
-			<!--
+			<!-- <p>
 			{$load=$point_node->getNodeAlive()}
 			alive_chart{$id} = new CanvasJS.Chart("alive{$id}_chart",
 			{
@@ -111,7 +111,7 @@
 				}
 				]
 			});
-			-->
+			</p> -->
 			
 			
 			{$speedtests=$point_node->getSpeedtestResult()}
