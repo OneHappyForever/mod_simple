@@ -2,7 +2,7 @@
 
 <div id="load{$id}_chart" style="height: 300px; width: 100%;"></div>
 	<div id="up{$id}_chart" style="height: 300px; width: 100%;"></div>
-	<div id="alive{$id}_chart" style="height: 300px; width: 100%;"></div>
+	<!--<div id="alive{$id}_chart" style="height: 300px; width: 100%;"></div>-->
 	<div id="speedtest{$id}_chart" style="height: 300px; width: 100%;"></div>
 	<div id="speedtest{$id}_ping_chart" style="height: 300px; width: 100%;"></div>
 
@@ -409,7 +409,7 @@
 				
 			chart{$id}.render();
 			up_chart{$id}.render();
-			alive_chart{$id}.render();
+			/*alive_chart{$id}.render();*/
 			speedtest_chart{$id}.render();
 			speedtest_ping_chart{$id}.render();
 			
