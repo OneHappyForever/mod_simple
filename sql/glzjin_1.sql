@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_admin` int(2) NOT NULL DEFAULT '0',
   `wechat` text NOT NULL,
   `last_day_t` bigint(20) NOT NULL DEFAULT '0',
-  `sendDailyMail` int(11) NOT NULL DEFAULT '1'
+  `sendDailyMail` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
