@@ -56,7 +56,7 @@
 								<td>Renews on {$shop->renew_date()}</td>
 								{/if}
 								
-								<td>Expires on {$shop->renew_date}</td>
+								<td>Expires on {$user->expire_in}</td>
 								
 								{if $shop->shop()->auto_reset_bandwidth==0}
                                 <td>Not reset automatically</td>
