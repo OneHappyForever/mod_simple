@@ -251,7 +251,7 @@
 											<dd>{$user->expire_in}</dd>
 											
 											<p><dt>Subsciption expiration date</dt>
-											<dd>{$shop->expire}</dd>
+											<dd>{$shop->renew_date}</dd>
 										
 
 											<p><dt>Speed ​​limit</dt>
