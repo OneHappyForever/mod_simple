@@ -247,11 +247,10 @@
 											<p><dt>Grade expiration date</dt>
 											<dd>{$user->class_expire}</dd></p>
 
-											<p><dt>Account expiration date</dt>
+											<p><dt>Subscription expiration date</dt>
 											<dd>{$user->expire_in}</dd>
 											
-											<p><dt>Subsciption expiration date</dt>
-											<dd>{$shop->renew_date}</dd>
+						
 										
 
 											<p><dt>Speed ​​limit</dt>
