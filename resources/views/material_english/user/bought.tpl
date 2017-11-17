@@ -37,6 +37,7 @@
 								<th>What you get</th>
 								<th>Price</th>
                                 <th>Date of Renewal</th>
+				<th>Date of Expiry</th>
 				
 								<th>Restores data when renewing</th>
                                 
@@ -56,6 +57,7 @@
 								<td>Renews on {$shop->renew_date()}</td>
 								{/if}
 								
+								<td>Expires on {$user->expire_in}</td>
 								
 								
 								{if $shop->shop()->auto_reset_bandwidth==0}
