@@ -249,6 +249,10 @@
 
 											<p><dt>Account expiration date</dt>
 											<dd>{$user->expire_in}</dd>
+											
+											<p><dt>Subsciption expiration date</dt>
+											<dd>{$content->expire}</dd>
+										
 
 											<p><dt>Speed ​​limit</dt>
 											{if $user->node_speedlimit!=0}
