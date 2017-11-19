@@ -46,25 +46,25 @@
 														<th>Server</th>
 														<th>Ping from China Telecom</th>
 														<th>China Telecom download speed</th>
-														<th>China Telecom upload speed</th>
+														<!--<th>China Telecom upload speed</th>-->
 														<th>Ping from China Unicom</th>
 														<th>China Unicom download speed</th>
-														<th>China Unicom upload speed</th>
+														<!--<th>China Unicom upload speed</th>-->
 														<th>Ping from China Mobile</th>
 														<th>China Mobile download speed</th>
-														<th>China Mobile upload speed</th>
+														<!--<th>China Mobile upload speed</th>-->
 													</tr>
 													{foreach $speedtest as $single}
 														<tr>
 															<td>{$single->node()->name}</td>
 															<td>{$single->telecomping}</td>
-															<td>{$single->telecomeupload}</td>
+															<!--<td>{$single->telecomeupload}</td>-->
 															<td>{$single->telecomedownload}</td>
 															<td>{$single->unicomping}</td>
-															<td>{$single->unicomupload}</td>
+															<!--<td>{$single->unicomupload}</td>-->
 															<td>{$single->unicomdownload}</td>
 															<td>{$single->cmccping}</td>
-															<td>{$single->cmccupload}</td>
+															<!--<td>{$single->cmccupload}</td>-->
 															<td>{$single->cmccdownload}</td>
 														</tr>
 													{/foreach}
