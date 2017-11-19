@@ -58,14 +58,14 @@
 														<tr>
 															<td>{$single->node()->name}</td>
 															<td>{$single->telecomping}</td>
-															<!--<td>{$single->telecomeupload}</td>-->
-															<td>{$single->telecomedownload}</td>
+															<td>{$single->telecomeupload}</td>
+															<!--<td>{$single->telecomedownload}</td>-->
 															<td>{$single->unicomping}</td>
-															<!--<td>{$single->unicomupload}</td>-->
-															<td>{$single->unicomdownload}</td>
+															<td>{$single->unicomupload}</td>
+															<!--<td>{$single->unicomdownload}</td>-->
 															<td>{$single->cmccping}</td>
-															<!--<td>{$single->cmccupload}</td>-->
-															<td>{$single->cmccdownload}</td>
+															<td>{$single->cmccupload}</td>
+															<!--<td>{$single->cmccdownload}</td>-->
 														</tr>
 													{/foreach}
 												</table>
