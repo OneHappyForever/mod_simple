@@ -310,7 +310,7 @@
 						
 					]
 				},
-				{
+				/*{
 					type: "line", 
 					showInLegend: true,
 					legendText: "China Unicom upload speed",
@@ -367,7 +367,7 @@
 						{/foreach}
 						
 					]
-				},
+				},*/
 				{
 					type: "line", 
 					showInLegend: true,
