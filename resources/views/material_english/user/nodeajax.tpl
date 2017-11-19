@@ -252,7 +252,7 @@
 						
 					]
 				},
-				{
+				/*{
 					type: "line", 
 					showInLegend: true,
 					legendText: "China Telecom upload speed",
@@ -280,7 +280,7 @@
 						{/foreach}
 						
 					]
-				},
+				},*/
 				{
 					type: "line", 
 					showInLegend: true,
