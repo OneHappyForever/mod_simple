@@ -471,7 +471,7 @@ class UserController extends BaseController
                         $node_bandwidth[$temp[0]]=(int)($node->node_bandwidth/1024/1024/1024)." GB / ".(int)($node->node_bandwidth_limit/1024/1024/1024)." GB - Reset on the ".$node->bandwidthlimit_resetday." day of the month";
                     }
 
-                    if ($node_tempalive!="No data") {
+                    if ($node_tempalive!="暂无数据") {
                         $node_alive[$temp[0]]=$node_alive[$temp[0]]+$node_tempalive;
                     }
                 } else {
