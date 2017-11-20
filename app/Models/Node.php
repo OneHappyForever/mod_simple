@@ -67,7 +67,7 @@ class Node extends Model
         $id = $this->attributes['id'];
         $log = NodeOnlineLog::where('node_id', $id)->orderBy('id', 'desc')->first();
         if ($log == null) {
-            return "No data.";
+            return "No data";
         }
         return $log->online_user;
     }
