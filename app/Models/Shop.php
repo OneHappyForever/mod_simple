@@ -20,13 +20,13 @@ class Shop extends Model
                     $content_text .= "";
                     break;
                 case "expire":
-                    $content_text .= "Your subscription will be lengthened by ".$value." days ";
+                    $content_text .= "Your subscription will be lengthened by ".$value." days and";
                     break;
                 case "class":
                     $content_text .= "Your grade will be upgraded to ".$value." , and will be active for ".$content["class_expire"]." days";
                     break;
                 case "reset":
-                    $content_text .= " Your data cap will be reset to ".$content["reset_value"]." GBs every ".$value." days.";
+                    $content_text .= " your data cap will be reset to ".$content["reset_value"]." GBs every ".$value." days.";
                     break;
                 default:
             }
