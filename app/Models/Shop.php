@@ -17,7 +17,7 @@ class Shop extends Model
         foreach ($content as $key=>$value) {
             switch ($key) {
                 case "bandwidth":
-                    $content_text .= "You will receive ".$value." GBs data at the beginning of your subscription period ";
+                    $content_text .= "";
                     break;
                 case "expire":
                     $content_text .= "Your subscription will be lengthened by ".$value." days ";
@@ -26,7 +26,7 @@ class Shop extends Model
                     $content_text .= "Your grade will be upgraded to ".$value." , and will be active for ".$content["class_expire"]." days";
                     break;
                 case "reset":
-                    $content_text .= " Every ".$value." days your data will be reset to ".$content["reset_value"]." GBs. ";
+                    $content_text .= " Your data cap will be reset to ".$content["reset_value"]." GBs every ".$value." days.";
                     break;
                 default:
             }
