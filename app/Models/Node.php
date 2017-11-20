@@ -34,7 +34,7 @@ class Node extends Model
     {
         $log = $this->getLastNodeInfoLog();
         if ($log == null) {
-            return "暂无数据";
+            return "No data.";
         }
         return Tools::secondsToTime((int)$log->uptime);
     }
@@ -67,7 +67,7 @@ class Node extends Model
         $id = $this->attributes['id'];
         $log = NodeOnlineLog::where('node_id', $id)->orderBy('id', 'desc')->first();
         if ($log == null) {
-            return "暂无数据";
+            return "No data.";
         }
         return $log->online_user;
     }
@@ -77,13 +77,13 @@ class Node extends Model
         $id = $this->attributes['id'];
         $log = Speedtest::where('nodeid', $id)->orderBy('datetime', 'desc')->first();
         if ($log == null) {
-            return "暂无数据";
+            return "No data";
         }
 
 
-        return "电信延迟：".$log->telecomping." 下载：".$log->telecomeupload." 上传：".$log->telecomedownload."<br>
-		联通延迟：".$log->unicomping." 下载：".$log->unicomupload." 上传：".$log->unicomdownload."<br>
-		移动延迟：".$log->cmccping." 下载：".$log->cmccupload." 上传：".$log->cmccdownload."<br>定时测试，仅供参考";
+        return "China Telecom Ping：".$log->telecomping." Download：".$log->telecomeupload." Upload：".$log->telecomedownload."<br>
+		China Unicom Ping：".$log->unicomping." Download：".$log->unicomupload." Upload：".$log->unicomdownload."<br>
+		China Mobile Ping：".$log->cmccping." Download：".$log->cmccupload." Upload：".$log->cmccdownload."<br> regular interval speedtest，for reference";
     }
 
     public function getSpeedtestResult()
@@ -91,7 +91,7 @@ class Node extends Model
         $id = $this->attributes['id'];
         $log = Speedtest::where('nodeid', $id)->orderBy('id', 'desc')->limit(48)->get();
         if ($log == null) {
-            return "暂无数据";
+            return "No data.";
         }
 
 
@@ -105,7 +105,7 @@ class Node extends Model
         $traffic = TrafficLog::where('node_id', $id)->sum('u') + TrafficLog::where('node_id', $id)->sum('d');
 
         if ($traffic == 0) {
-            return "暂无数据";
+            return "No data.";
         }
 
         return Tools::flowAutoShow($traffic);
