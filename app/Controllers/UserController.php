@@ -475,9 +475,9 @@ class UserController extends BaseController
                         $node_alive[$temp[0]]=$node_alive[$temp[0]]+$node_tempalive;
                     }
                 } else {
-                    $node_prealive[$node->id]="No data";
+                    $node_prealive[$node->id]="暂无数据";
                     if (!isset($node_heartbeat[$temp[0]])) {
-                        $node_heartbeat[$temp[0]]="No data";
+                        $node_heartbeat[$temp[0]]="暂无数据";
                     }
                 }
 
