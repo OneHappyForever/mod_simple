@@ -51,7 +51,7 @@ class User extends Model
     public function lastSsTime()
     {
         if ($this->attributes['t'] == 0) {
-            return "从未使用喵";
+            return "Never used before";
         }
         return Tools::toDateTime($this->attributes['t']);
     }
@@ -75,7 +75,7 @@ class User extends Model
     public function lastCheckInTime()
     {
         if ($this->attributes['last_check_in_time'] == 0) {
-            return "从未签到";
+            return "Never subscribed";
         }
         return Tools::toDateTime($this->attributes['last_check_in_time']);
     }
@@ -197,7 +197,7 @@ class User extends Model
     public function getGAurl()
     {
         $ga = new GA();
-        $url = $ga->getUrl(urlencode(Config::get('appName')."-".$this->attributes['user_name']."-两步验证码"), $this->attributes['ga_token']);
+        $url = $ga->getUrl(urlencode(Config::get('appName')."-".$this->attributes['user_name']."-two-step verification"), $this->attributes['ga_token']);
         return $url;
     }
 
@@ -273,7 +273,7 @@ class User extends Model
     {
         $id = $this->attributes['id'];
         $today_traffic = Tools::flowToMB($this->attributes['u'] + $this->attributes['d'] - $this->attributes['last_day_t']);
-        $is_enable = $this->attributes['enable'] == 1 ? "可用" : "禁用";
+        $is_enable = $this->attributes['enable'] == 1 ? "Enable" : "Disable";
         $reg_location = $this->attributes['reg_ip'];
         $account_expire_in = $this->attributes['expire_in'];
         $class_expire_in = $this->attributes['class_expire'];
@@ -284,7 +284,7 @@ class User extends Model
         $im_value = $this->attributes['im_value'];
         switch($this->attributes['im_type']) {
             case 1:
-                $im_type = '微信';
+                $im_type = 'Wechat';
                 break;
             case 2:
                 $im_type = 'QQ';
@@ -301,11 +301,11 @@ class User extends Model
 
         if ($this->attributes['ref_by'] == 0) {
             $ref_user_id = 0;
-            $ref_user_name = "系统邀请";
+            $ref_user_name = "System Invite";
         } else {
             if ($ref_user == null) {
                 $ref_user_id = $this->attributes['ref_by'];
-                $ref_user_name = "邀请人已经被删除";
+                $ref_user_name = "The user who invited you no longer exists.";
             } else {
                 $ref_user_id = $this->attributes['ref_by'];
                 $ref_user_name = $ref_user->user_name;
