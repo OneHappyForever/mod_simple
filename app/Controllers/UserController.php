@@ -159,7 +159,7 @@ class UserController extends BaseController
         $amount = $request->getParam('amount');
         if ($amount == "") {
             $res['ret'] = 0;
-            $res['msg'] = "订单金额错误：".$amount;
+            $res['msg'] = "Wrong amount：".$amount;
             return $response->getBody()->write(json_encode($res));
         }
         $user = $this->user;
@@ -171,24 +171,24 @@ class UserController extends BaseController
             case "SUCCESS":
                 $aliresponse = $qrPayResult->getResponse();
                 $res['ret'] = 1;
-                $res['msg'] = "二维码生成成功";
+                $res['msg'] = "QR Code successfully created";
                 $res['amount'] = $amount;
                 $res['qrcode'] = $qrPay->create_erweima_baidu($aliresponse->qr_code);
                 
                 break;
             case "FAILED":
                 $res['ret'] = 0;
-                $res['msg'] = "支付宝创建订单二维码失败!!! 请使用其他方式付款。";
+                $res['msg'] = "Alipay failed to create the payment QR code. Please use another method of payment.";
 
                 break;
             case "UNKNOWN":
                 $res['ret'] = 0;
-                $res['msg'] = "系统异常，状态未知!!!!!! 请使用其他方式付款。";
+                $res['msg'] = "System error. Please us another method of payment.";
                 
                 break;
             default:
                 $res['ret'] = 0;
-                $res['msg'] = "创建订单二维码返回异常!!!!!! 请使用其他方式付款。";
+                $res['msg'] = "QR Code creation failed. Please use another method of payment. ";
                 
                 break;
         }
@@ -213,14 +213,14 @@ class UserController extends BaseController
 
         if ($code == "") {
             $res['ret'] = 0;
-            $res['msg'] = "请填好充值码";
+            $res['msg'] = "Please enter your recharge code.";
             return $response->getBody()->write(json_encode($res));
         }
 
         $codeq=Code::where("code", "=", $code)->where("isused", "=", 0)->first();
         if ($codeq == null) {
             $res['ret'] = 0;
-            $res['msg'] = "此充值码错误";
+            $res['msg'] = "This recharge code doesn't exist.";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -248,7 +248,7 @@ class UserController extends BaseController
             }
 
             $res['ret'] = 1;
-            $res['msg'] = "充值成功，充值的金额为".$codeq->number."元。";
+            $res['msg'] = "Your account was successfully recharged. Recharge amount:".$codeq->number." CNY";
 
             if (Config::get('enable_donate') == 'true') {
                 if ($this->user->is_hide == 1) {
@@ -298,7 +298,7 @@ class UserController extends BaseController
 
         if ($code == "") {
             $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
+            $res['msg'] = "Empty";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -306,13 +306,13 @@ class UserController extends BaseController
         $rcode = $ga->verifyCode($user->ga_token, $code);
         if (!$rcode) {
             $res['ret'] = 0;
-            $res['msg'] = "测试错误";
+            $res['msg'] = "Test failed";
             return $response->getBody()->write(json_encode($res));
         }
 
 
         $res['ret'] = 1;
-        $res['msg'] = "测试成功";
+        $res['msg'] = "Test successful";
         return $response->getBody()->write(json_encode($res));
     }
 
@@ -326,7 +326,7 @@ class UserController extends BaseController
 
         if ($enable == "") {
             $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
+            $res['msg'] = "Empty";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -335,7 +335,7 @@ class UserController extends BaseController
 
 
         $res['ret'] = 1;
-        $res['msg'] = "设置成功";
+        $res['msg'] = "Setup successful";
         return $response->getBody()->write(json_encode($res));
     }
 
@@ -356,7 +356,7 @@ class UserController extends BaseController
 
 
         $res['ret'] = 1;
-        $res['msg'] = "设置成功，新端口是".$user->port;
+        $res['msg'] = "Success! Your new port is ".$user->port;
         return $response->getBody()->write(json_encode($res));
     }
 
@@ -466,18 +466,18 @@ class UserController extends BaseController
                     }
 
                     if ($node->node_bandwidth_limit==0) {
-                        $node_bandwidth[$temp[0]]=(int)($node->node_bandwidth/1024/1024/1024)." GB / 不限";
+                        $node_bandwidth[$temp[0]]=(int)($node->node_bandwidth/1024/1024/1024)." GB / Unlimited";
                     } else {
-                        $node_bandwidth[$temp[0]]=(int)($node->node_bandwidth/1024/1024/1024)." GB / ".(int)($node->node_bandwidth_limit/1024/1024/1024)." GB - ".$node->bandwidthlimit_resetday." 日重置";
+                        $node_bandwidth[$temp[0]]=(int)($node->node_bandwidth/1024/1024/1024)." GB / ".(int)($node->node_bandwidth_limit/1024/1024/1024)." GB - Reset on the ".$node->bandwidthlimit_resetday." day of the month";
                     }
 
-                    if ($node_tempalive!="暂无数据") {
+                    if ($node_tempalive!="No data") {
                         $node_alive[$temp[0]]=$node_alive[$temp[0]]+$node_tempalive;
                     }
                 } else {
-                    $node_prealive[$node->id]="暂无数据";
+                    $node_prealive[$node->id]="No data";
                     if (!isset($node_heartbeat[$temp[0]])) {
-                        $node_heartbeat[$temp[0]]="暂无数据";
+                        $node_heartbeat[$temp[0]]="No data";
                     }
                 }
 
@@ -526,7 +526,7 @@ class UserController extends BaseController
                 if ($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0)) {
                     $email=$this->user->email;
                     $email=Radius::GetUserName($email);
-                    $json_show="VPN 信息<br>地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
+                    $json_show="VPN info<br>URL：".$node->server."<br>"."Username：".$email."<br>Password：".$this->user->passwd."<br>Supported method：".$node->method."<br>Description：".$node->info;
 
                     return $this->view()->assign('json_show', $json_show)->display('user/nodeinfovpn.tpl');
                 }
@@ -536,7 +536,7 @@ class UserController extends BaseController
                 if ($user->class>=$node->node_class&&($user->node_group==$node->node_group||$node->node_group==0)) {
                     $email=$this->user->email;
                     $email=Radius::GetUserName($email);
-                    $json_show="SSH 信息<br>地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
+                    $json_show="SSH info<br>地址：".$node->server."<br>"."用户名：".$email."<br>密码：".$this->user->passwd."<br>支持方式：".$node->method."<br>备注：".$node->info;
 
                     return $this->view()->assign('json_show', $json_show)->display('user/nodeinfossh.tpl');
                 }
@@ -727,10 +727,10 @@ class UserController extends BaseController
 
         $BIP = BlockIp::where("ip", $_SERVER["REMOTE_ADDR"])->first();
         if ($BIP == null) {
-            $Block = "IP: ".$_SERVER["REMOTE_ADDR"]." 没有被封";
+            $Block = "IP: ".$_SERVER["REMOTE_ADDR"]." not blocked";
             $isBlock = 0;
         } else {
-            $Block = "IP: ".$_SERVER["REMOTE_ADDR"]." 已被封";
+            $Block = "IP: ".$_SERVER["REMOTE_ADDR"]." blocked";
             $isBlock = 1;
         }
 
@@ -762,7 +762,7 @@ class UserController extends BaseController
         $n = $this->user->invite_num;
         if ($n < 1) {
             $res['ret'] = 0;
-            $res['msg'] = "失败";
+            $res['msg'] = "Failed";
             return $response->getBody()->write(json_encode($res));
         }
         for ($i = 0; $i < $n; $i++) {
@@ -775,7 +775,7 @@ class UserController extends BaseController
         $this->user->invite_num = 0;
         $this->user->save();
         $res['ret'] = 1;
-        $res['msg'] = "生成成功。";
+        $res['msg'] = "Generated successfully";
         return $this->echoJson($response, $res);
     }
 
@@ -792,18 +792,18 @@ class UserController extends BaseController
         $user = $this->user;
         if (!Hash::checkPassword($user->pass, $oldpwd)) {
             $res['ret'] = 0;
-            $res['msg'] = "旧密码错误";
+            $res['msg'] = "Wrong password";
             return $response->getBody()->write(json_encode($res));
         }
         if ($pwd != $repwd) {
             $res['ret'] = 0;
-            $res['msg'] = "两次输入不符合";
+            $res['msg'] = "Passwords don't match";
             return $response->getBody()->write(json_encode($res));
         }
 
         if (strlen($pwd) < 8) {
             $res['ret'] = 0;
-            $res['msg'] = "密码太短啦";
+            $res['msg'] = "Your password is too short";
             return $response->getBody()->write(json_encode($res));
         }
         $hashPwd = Hash::passwordHash($pwd);
@@ -813,7 +813,7 @@ class UserController extends BaseController
         $user->clean_link();
 
         $res['ret'] = 1;
-        $res['msg'] = "修改成功";
+        $res['msg'] = "Success";
         return $this->echoJson($response, $res);
     }
 
@@ -825,7 +825,7 @@ class UserController extends BaseController
         $user->save();
 
         $res['ret'] = 1;
-        $res['msg'] = "修改成功";
+        $res['msg'] = "Success";
         return $this->echoJson($response, $res);
     }
 
@@ -870,7 +870,7 @@ class UserController extends BaseController
 
         if ($shop==null) {
             $res['ret'] = 0;
-            $res['msg'] = "非法请求";
+            $res['msg'] = "Unrecognized action";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -878,7 +878,7 @@ class UserController extends BaseController
             $res['ret'] = 1;
             $res['name'] = $shop->name;
             $res['credit'] = "0 %";
-            $res['total'] = $shop->price."元";
+            $res['total'] = $shop->price." CNY";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -886,20 +886,20 @@ class UserController extends BaseController
 
         if ($coupon==null) {
             $res['ret'] = 0;
-            $res['msg'] = "优惠码无效";
+            $res['msg'] = "Coupon doesn't exist.";
             return $response->getBody()->write(json_encode($res));
         }
 
         if ($coupon->order($shop->id)==false) {
             $res['ret'] = 0;
-            $res['msg'] = "此优惠码不可用于此商品";
+            $res['msg'] = "This coupon cannot be used for this product";
             return $response->getBody()->write(json_encode($res));
         }
 
         $res['ret'] = 1;
         $res['name'] = $shop->name;
         $res['credit'] = $coupon->credit." %";
-        $res['total'] = $shop->price*((100-$coupon->credit)/100)."元";
+        $res['total'] = $shop->price*((100-$coupon->credit)/100)." CNY";
 
         return $response->getBody()->write(json_encode($res));
     }
@@ -916,7 +916,7 @@ class UserController extends BaseController
 
         if ($shop==null) {
             $res['ret'] = 0;
-            $res['msg'] = "非法请求";
+            $res['msg'] = "Unknown action";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -937,13 +937,13 @@ class UserController extends BaseController
 
             if ($coupon->order($shop->id)==false) {
                 $res['ret'] = 0;
-                $res['msg'] = "此优惠码不可用于此商品";
+                $res['msg'] = "This coupon cannot be used for this product";
                 return $response->getBody()->write(json_encode($res));
             }
 
             if ($coupon->expire<time()) {
                 $res['ret'] = 0;
-                $res['msg'] = "此优惠码已过期";
+                $res['msg'] = "This coupon has expired";
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -952,7 +952,7 @@ class UserController extends BaseController
         $user=$this->user;
         if ($user->money<$price) {
             $res['ret'] = 0;
-            $res['msg'] = "余额不足";
+            $res['msg'] = "Not enough funds. Please recharge your account.";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -981,7 +981,7 @@ class UserController extends BaseController
         $shop->buy($user);
 
         $res['ret'] = 1;
-        $res['msg'] = "购买成功";
+        $res['msg'] = "Success!";
 
         return $response->getBody()->write(json_encode($res));
     }
@@ -1005,7 +1005,7 @@ class UserController extends BaseController
 
         if ($shop==null) {
             $rs['ret'] = 0;
-            $rs['msg'] = "退订失败，订单不存在。";
+            $rs['msg'] = "Cannot delete. This tansaction doesn't exist.";
             return $response->getBody()->write(json_encode($rs));
         }
 
@@ -1015,11 +1015,11 @@ class UserController extends BaseController
 
         if (!$shop->save()) {
             $rs['ret'] = 0;
-            $rs['msg'] = "退订失败";
+            $rs['msg'] = "Failed";
             return $response->getBody()->write(json_encode($rs));
         }
         $rs['ret'] = 1;
-        $rs['msg'] = "退订成功";
+        $rs['msg'] = "Success!";
         return $response->getBody()->write(json_encode($rs));
     }
 
@@ -1049,13 +1049,13 @@ class UserController extends BaseController
 
         if ($title==""||$content=="") {
             $res['ret'] = 0;
-            $res['msg'] = "请填全";
+            $res['msg'] = "Make sure your information is complete";
             return $this->echoJson($response, $res);
         }
 
         if (strpos($content, "admin")!=false||strpos($content, "user")!=false) {
             $res['ret'] = 0;
-            $res['msg'] = "请求中有不正当的词语。";
+            $res['msg'] = "Your request has some unknown characters";
             return $this->echoJson($response, $res);
         }
 
@@ -1073,7 +1073,7 @@ class UserController extends BaseController
 
         $adminUser = User::where("is_admin", "=", "1")->get();
         foreach ($adminUser as $user) {
-            $subject = Config::get('appName')."-新工单被开启";
+            $subject = Config::get('appName')."-A new ticket has been opened";
             $to = $user->email;
             $text = "管理员您好，有人开启了新的工单，请您及时处理。。" ;
             try {
@@ -1087,7 +1087,7 @@ class UserController extends BaseController
         }
 
         $res['ret'] = 1;
-        $res['msg'] = "提交成功";
+        $res['msg'] = "Success!";
         return $this->echoJson($response, $res);
     }
 
@@ -1099,13 +1099,13 @@ class UserController extends BaseController
 
         if ($content==""||$status=="") {
             $res['ret'] = 0;
-            $res['msg'] = "请填全";
+            $res['msg'] = "Make sure the informarion you have entered is complete";
             return $this->echoJson($response, $res);
         }
 
         if (strpos($content, "admin")!=false||strpos($content, "user")!=false) {
             $res['ret'] = 0;
-            $res['msg'] = "请求中有不正当的词语。";
+            $res['msg'] = "Your request has some unknown characters";
             return $this->echoJson($response, $res);
         }
 
@@ -1119,7 +1119,7 @@ class UserController extends BaseController
         if ($status==1&&$ticket_main->status!=$status) {
             $adminUser = User::where("is_admin", "=", "1")->get();
             foreach ($adminUser as $user) {
-                $subject = Config::get('appName')."-工单被重新开启";
+                $subject = Config::get('appName')."-The ticket has beem reopened";
                 $to = $user->email;
                 $text = "管理员您好，有人重新开启了<a href=\"".Config::get('baseUrl')."/admin/ticket/".$ticket_main->id."/view\">工单</a>，请您及时处理。" ;
                 try {
@@ -1134,7 +1134,7 @@ class UserController extends BaseController
         } else {
             $adminUser = User::where("is_admin", "=", "1")->get();
             foreach ($adminUser as $user) {
-                $subject = Config::get('appName')."-工单被回复";
+                $subject = Config::get('appName')."-Ticket has neem answered";
                 $to = $user->email;
                 $text = "管理员您好，有人回复了<a href=\"".Config::get('baseUrl')."/admin/ticket/".$ticket_main->id."/view\">工单</a>，请您及时处理。" ;
                 try {
@@ -1165,7 +1165,7 @@ class UserController extends BaseController
 
 
         $res['ret'] = 1;
-        $res['msg'] = "提交成功";
+        $res['msg'] = "Success!";
         return $this->echoJson($response, $res);
     }
 
@@ -1201,20 +1201,20 @@ class UserController extends BaseController
 
         if ($user->telegram_id != 0) {
             $res['ret'] = 0;
-            $res['msg'] = "您绑定了 Telegram ，所以此项并不能被修改。";
+            $res['msg'] = "You've linked your account to Telegram ，so you can no longer edit rhis page";
             return $response->getBody()->write(json_encode($res));
         }
 
         if ($wechat == ""||$type == "") {
             $res['ret'] = 0;
-            $res['msg'] = "请填好";
+            $res['msg'] = "Please double check";
             return $response->getBody()->write(json_encode($res));
         }
 
         $user1 = User::where('im_value', $wechat)->where('im_type', $type)->first();
         if ($user1 != null) {
             $res['ret'] = 0;
-            $res['msg'] = "此联络方式已经被注册了";
+            $res['msg'] = "You have already registered this contact detail";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -1224,7 +1224,7 @@ class UserController extends BaseController
         $user->save();
 
         $res['ret'] = 1;
-        $res['msg'] = "修改成功";
+        $res['msg'] = "Edited successfully";
         return $this->echoJson($response, $res);
     }
 
@@ -1238,19 +1238,19 @@ class UserController extends BaseController
 
         if ($obfs == ""||$protocol == "") {
             $res['ret'] = 0;
-            $res['msg'] = "请填好";
+            $res['msg'] = "Pleaae double check";
             return $response->getBody()->write(json_encode($res));
         }
 
         if (!Tools::is_param_validate('obfs', $obfs)) {
             $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
+            $res['msg'] = "Empty";
             return $response->getBody()->write(json_encode($res));
         }
 
         if (!Tools::is_param_validate('protocol', $protocol)) {
             $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
+            $res['msg'] = "Empty";
             return $response->getBody()->write(json_encode($res));
         }
 
