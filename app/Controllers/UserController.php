@@ -1463,7 +1463,7 @@ class UserController extends BaseController
         $this->user->transfer_enable = $this->user->transfer_enable + Tools::toMB($traffic);
         $this->user->last_check_in_time = time();
         $this->user->save();
-        $res['msg'] = sprintf("获得了 %u MB流量.", $traffic);
+        $res['msg'] = sprintf("You got %u MB.", $traffic);
         $res['ret'] = 1;
         return $this->echoJson($response, $res);
     }
@@ -1484,14 +1484,14 @@ class UserController extends BaseController
         $res = array();
         if (!Hash::checkPassword($user->pass, $passwd)) {
             $res['ret'] = 0;
-            $res['msg'] = " 密码错误";
+            $res['msg'] = " Wrong password";
             return $this->echoJson($response, $res);
         }
 
         Auth::logout();
         $user->kill_user();
         $res['ret'] = 1;
-        $res['msg'] = "GG!您的帐号已经从我们的系统中删除.";
+        $res['msg'] = "Your account has been deleted.";
         return $this->echoJson($response, $res);
     }
 
