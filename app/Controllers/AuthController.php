@@ -65,7 +65,7 @@ class AuthController extends BaseController
             $ret = Geetest::verify($request->getParam('geetest_challenge'), $request->getParam('geetest_validate'), $request->getParam('geetest_seccode'));
             if (!$ret) {
                 $res['ret'] = 0;
-                $res['msg'] = "系统无法接受您的验证结果，请刷新页面后重试。";
+                $res['msg'] = "The system cannot process your confirmation. Please refresh the oage and try again.";
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -75,13 +75,13 @@ class AuthController extends BaseController
 
         if ($user == null) {
             $rs['ret'] = 0;
-            $rs['msg'] = "401 邮箱或者密码错误";
+            $rs['msg'] = "401 Wrong email or password";
             return $response->getBody()->write(json_encode($rs));
         }
 
         if (!Hash::checkPassword($user->pass, $passwd)) {
             $rs['ret'] = 0;
-            $rs['msg'] = "402 邮箱或者密码错误";
+            $rs['msg'] = "402 Wrong email or password";
 
 
             $loginip=new LoginIp();
@@ -112,7 +112,7 @@ class AuthController extends BaseController
 
         Auth::login($user->id, $time);
         $rs['ret'] = 1;
-        $rs['msg'] = "欢迎回来";
+        $rs['msg'] = "Welcome back!";
 
         $loginip=new LoginIp();
         $loginip->ip=$_SERVER["REMOTE_ADDR"];
@@ -136,7 +136,7 @@ class AuthController extends BaseController
         $ret = TelegramSessionManager::step2_verify_login_session($token, $number);
         if (!$ret) {
             $res['ret'] = 0;
-            $res['msg'] = "此令牌无法被使用。";
+            $res['msg'] = "This token can't be used";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -148,7 +148,7 @@ class AuthController extends BaseController
 
         Auth::login($user->id, $time);
         $rs['ret'] = 1;
-        $rs['msg'] = "欢迎回来";
+        $rs['msg'] = "Welcome back!";
 
         $loginip=new LoginIp();
         $loginip->ip=$_SERVER["REMOTE_ADDR"];
@@ -190,14 +190,14 @@ class AuthController extends BaseController
 
             if ($email=="") {
                 $res['ret'] = 0;
-                $res['msg'] = "哦？你填了你的邮箱了吗？";
+                $res['msg'] = "Please make sure you have entered an email address";
                 return $response->getBody()->write(json_encode($res));
             }
 
             // check email format
             if (!Check::isEmailLegal($email)) {
                 $res['ret'] = 0;
-                $res['msg'] = "邮箱无效";
+                $res['msg'] = "Email doesn't exist";
                 return $response->getBody()->write(json_encode($res));
             }
 
@@ -205,7 +205,7 @@ class AuthController extends BaseController
             $user = User::where('email', '=', $email)->first();
             if ($user!=null) {
                 $res['ret'] = 0;
-                $res['msg'] = "此邮箱已经注册";
+                $res['msg'] = "This email has already been registered";
                 return $response->getBody()->write(json_encode($res));
             }
 
@@ -233,7 +233,7 @@ class AuthController extends BaseController
             $ev->code = $code;
             $ev->save();
 
-            $subject = Config::get('appName')."- 验证邮件";
+            $subject = Config::get('appName')."- Confirmation email";
 
             try {
                 Mail::send($email, $subject, 'auth/verify.tpl', [
@@ -246,7 +246,7 @@ class AuthController extends BaseController
             }
 
             $res['ret'] = 1;
-            $res['msg'] = "验证码发送成功，请查收邮件。";
+            $res['msg'] = "Success! Please check your email to get the code and come back here to enter it";
             return $response->getBody()->write(json_encode($res));
         }
     }
@@ -277,7 +277,7 @@ class AuthController extends BaseController
             $c = InviteCode::where('code', $code)->first();
             if ($c == null) {
                 $res['ret'] = 0;
-                $res['msg'] = "邀请码无效";
+                $res['msg'] = "Your invitation code is invalid";
                 return $response->getBody()->write(json_encode($res));
             }
         }
@@ -285,7 +285,7 @@ class AuthController extends BaseController
         // check email format
         if (!Check::isEmailLegal($email)) {
             $res['ret'] = 0;
-            $res['msg'] = "邮箱无效";
+            $res['msg'] = "This email doesn't exist";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -293,7 +293,7 @@ class AuthController extends BaseController
             $mailcount = EmailVerify::where('email', '=', $email)->where('code', '=', $emailcode)->where('expire_in', '>', time())->first();
             if ($mailcount == null) {
                 $res['ret'] = 0;
-                $res['msg'] = "您的邮箱验证码不正确";
+                $res['msg'] = "Your verification code doesn't exist";
                 return $response->getBody()->write(json_encode($res));
             }
             EmailVerify::where('email', '=', $email)->delete();
@@ -302,14 +302,14 @@ class AuthController extends BaseController
         // check pwd length
         if (strlen($passwd)<2) {
             $res['ret'] = 0;
-            $res['msg'] = "密码太短";
+            $res['msg'] = "Your password is too short";
             return $response->getBody()->write(json_encode($res));
         }
 
         // check pwd re
         if ($passwd != $repasswd) {
             $res['ret'] = 0;
-            $res['msg'] = "两次密码输入不符";
+            $res['msg'] = "Passwords don't match";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -317,7 +317,7 @@ class AuthController extends BaseController
         $user = User::where('email', $email)->first();
         if ($user != null) {
             $res['ret'] = 0;
-            $res['msg'] = "邮箱已经被注册了";
+            $res['msg'] = "This email has already been used";
             return $response->getBody()->write(json_encode($res));
         }
 
@@ -387,7 +387,7 @@ class AuthController extends BaseController
 
         if ($user->save()) {
             $res['ret'] = 1;
-            $res['msg'] = "注册成功";
+            $res['msg'] = "Success!";
 
             Duoshuo::add($user);
 
@@ -401,7 +401,7 @@ class AuthController extends BaseController
             return $response->getBody()->write(json_encode($res));
         }
         $res['ret'] = 0;
-        $res['msg'] = "未知错误";
+        $res['msg'] = "Unknown error";
         return $response->getBody()->write(json_encode($res));
     }
 
