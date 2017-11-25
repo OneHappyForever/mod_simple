@@ -35,9 +35,9 @@ class Pay
     {
         return '
 						<form action="/user/alipay" method="get" target="_blank" >
-							<h3>支付宝充值</h3>
-							<p>充值金额: <input type="text" name="amount" /></p>
-							<input type="submit" value="提交" />
+							<h3>Alipay</h3>
+							<p>Recharge amount: <input type="text" name="amount" /></p>
+							<input type="submit" value="Submit" />
 						</form>
 ';
     }
@@ -45,7 +45,7 @@ class Pay
     private static function zfbjk_html($user)
     {
         return '
-						<p>请扫码，给我转账来充值，记得备注上 <code>'.$user->id.'</code>。<br></p>
+						<p>Please scan to pay. Make sure to add this code in the description so that we know it is you: <code>'.$user->id.'</code>。<br></p>
 						<img src="'.Config::get('zfbjk_qrcodeurl').'"/>
 ';
     }
@@ -79,16 +79,20 @@ class Pay
         // <option value="8">8元(月卡)</option>
 
         return '
-						<p class="card-heading">点击对应支付方式进行充值</p>
-						<label for="number">请选择充值金额：</label>
+						<p class="card-heading">Please select a payment method.</p>
+						<label for="number">Recharge amount：</label>
        					<form name="alipayment" action="/assets/91pay/91pay.php" method="post">
 						<select class="form-control" id="price" name="price">
-                        <option value="1">1元(用于测试本站实时到账功能)</option>
-                        <option value="10">10元</option>
-                        <option value="20">20元</option>
-                        <option value="50">50元</option>
-                        <option value="100">100元</option>
-                        <option value="200">200元</option>
+                        <option value="1">1 CNY(For testing purposes)</option>
+                        <option value="10">10 CNY</option>
+                        <option value="20">20 CNY</option>
+                        <option value="50">50 CNY</option>
+			<option value="70">70 CNY</option>
+                        <option value="100">100 CNY</option>
+			<option value="150">150 CNY</option>
+                        <option value="200">200 CNY</option>
+			<option value="250">250 CNY</option>
+			<option value="400">400 CNY</option>
                         </select>
                         <br>
                         <input type="hidden" name="user" value="'.$user->id.'">
@@ -145,7 +149,7 @@ class Pay
         $out_trade_no = $pl->id;
 
         //订单名称，必填
-        $subject = $pl->id."UID".$user->id." 充值".$amount."元";
+        $subject = $pl->id."UID".$user->id." recharge".$amount." CNY";
 
         //付款金额，必填
         $total_fee = (float)$amount;
@@ -166,7 +170,7 @@ class Pay
 
         //建立请求
         $alipaySubmit = new Spay_submit($alipay_config);
-        $html_text = $alipaySubmit->buildRequestForm($parameter, "get", "确认");
+        $html_text = $alipaySubmit->buildRequestForm($parameter, "get", "Confirm");
         echo $html_text;
         exit(0);
     }
@@ -766,7 +770,7 @@ class Pay
         if($codeq!=null){
             echo '
             <script>
-               alert("订单已处理，第三方支付91pay祝您购物愉快");
+               alert("Your order has been processed");
                window.location.href="/user/code";
             </script>
             ';
@@ -803,7 +807,7 @@ class Pay
             }
             echo '
 <script>
-    alert("支付成功，第三方支付91pay祝您购物愉快");
+    alert("Payment successful!");
     window.location.href="/user/code";
 </script>
 ';
@@ -839,7 +843,7 @@ class Pay
             }
             echo '
 <script>
-    alert("站长未设置$System_Config[alipay]收款人账户，无法到账");
+    alert("The site owner hasn\'t set up a $System_Config[alipay] receiver\'s address. Transaction failed.");
     window.location.href="/user/code";
 </script>
 ';
