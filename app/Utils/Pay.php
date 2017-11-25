@@ -84,15 +84,14 @@ class Pay
        					<form name="alipayment" action="/assets/91pay/91pay.php" method="post">
 						<select class="form-control" id="price" name="price">
                         <option value="1">1 CNY(For testing purposes)</option>
-                        <option value="10">10 CNY</option>
-                        <option value="20">20 CNY</option>
                         <option value="50">50 CNY</option>
-			<option value="70">70 CNY</option>
-                        <option value="100">100 CNY</option>
-			<option value="150">150 CNY</option>
+			<option value="70">70 CNY (1 Month)</option>
+			<option value="50">100 CNY</option>
+			<option value="150">150 CNY (3 Months)</option>
                         <option value="200">200 CNY</option>
-			<option value="250">250 CNY</option>
-			<option value="400">400 CNY</option>
+			<option value="250">250 CNY (6 Months)</option>
+			<option value="400">400 CNY (1 Year)</option>
+			<option value="800">800 CNY</option>
                         </select>
                         <br>
                         <input type="hidden" name="user" value="'.$user->id.'">
