@@ -9,5 +9,10 @@ Resolve english bugs from original version.
 
 
 详情见：[https://91vps.win/2017/06/09/alipay_f2f_ss_panel_mod/](https://91vps.win/2017/06/09/alipay_f2f_ss_panel_mod/)
+Original repository: https://github.com/mmmwhy/mod
 
 created on the 14/11/17
+
+Last sync with the original repository: 24/11/17
+
+Updated payment method 
