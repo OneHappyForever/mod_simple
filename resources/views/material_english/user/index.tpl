@@ -106,11 +106,11 @@
 														{/if}
 													</div>
 													<div class="tab-pane fade" id="all_ssr_windows">
-														<p><a href="/ssr-download/ssr-win.7z">Download</a> and unzip the file. Double-click on the ShadowsocksR file to start the app. You now have three ways to import the servers:<br>
-															(1) Depending on your setup, download <a href="/user/getpcconf?is_mu=0&is_ss=0"> this file (default)</a> or <a href="/user/getpcconf?is_mu=1&is_ss=0">this file (single-port multi-user)</a>. Right-click on the small paper airplane icon on the bottom right corner of your screen. Go to servers -> "import servers from file" and select this file.<br>
-															(2) Click on <a class="copy-text" data-clipboard-text="{$ssr_url_all}">this link (default)</a> or <a class="copy-text" data-clipboard-text="{$ssr_url_all}">this link (single-port multi-user)</a>. Right-click the paper airplane icon. Select "import SSR links from clipboard"<br>
-															(3) (Recommended) Right-click the paper airplane icon. Go to servers subscribe -> Subscribe Settings. Set the subscription address to the following address, leave the other parameters blank, and then refresh the SSR server subscription.<br>
-															Once you have entered all the servers, select a suitable server, set Mode to "Global", and you will be connected.</p>
+														<p><a href="/ssr-download/ssr-win.7z">Download</a> and unzip the file (if you cannot unzip it, you may need to <a href="http://www.7-zip.org/">download 7zip here</a>). Double-click on the ShadowsocksR file (either the dotnet 2.0 or 4.0 version) to start the app. You now have three ways to import the servers:<br>
+															(1) Download <a href="/user/getpcconf?is_mu=0&is_ss=0"> this file (default)</a>. Right-click on the small paper airplane icon on the bottom right corner of your screen. Go to servers -> "import servers from file" and select this file.<br>
+															(2) Click on <a class="copy-text" data-clipboard-text="{$ssr_url_all}">this link (default)</a>. Right-click the paper airplane icon. Select "import SSR links from clipboard"<br>
+															(3) (Recommended) Right-click the paper airplane icon. Go to servers subscribe -> Subscribe Settings. Click on add, and set the subscription address to the following address, leave the other parameters blank, and then refresh the SSR server subscription. To refresh, go to servers subscribe -> update subscribe SSR node (bypass proxy)<br>
+															Once you have entered all the servers, select a suitable server (Servers -> Ultravpns), set Mode to "Global", disable Load balance, and you will be connected.</p>
 
 														<p>SSR Subscription address:<br>
 															Ordinary port address:<code>{$baseUrl}/link/{$ssr_sub_token}?mu=0</code><br>
