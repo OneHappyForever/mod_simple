@@ -26,7 +26,7 @@
 					
 				
 					
-				</div>	
+				
 
 							
 			</div>
@@ -35,7 +35,7 @@
 			
 		</div>
 		
-		<--add your embedded forum code bellow this line 
+		<-- add your embedded forum code bellow this line 
 		--!>
 		
 		
