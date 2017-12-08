@@ -35,7 +35,9 @@
 			
 		</div>
 		
-		<-- add your embedded forum code here --!>
+		//add your embedded forum code bellow this line --!>
+		
+		
 	</main>
 
 
