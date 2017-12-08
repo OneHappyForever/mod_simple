@@ -330,7 +330,13 @@
 							
 							<li>
 								<a href="/user/ticket">
-									<i class="icon icon-lg">question_answer</i>&nbsp;Support Tickets
+									<i class="icon icon-lg">live_help</i>&nbsp;Support Tickets
+								</a>
+							</li>
+							
+							<li>
+								<a href="/user/forum">
+									<i class="icon icon-lg">question_answer</i>&nbsp;Forum
 								</a>
 							</li>
 						</ul>
