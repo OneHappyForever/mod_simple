@@ -41,8 +41,8 @@
 
 {literal}
 	
-	<a id="nabblelink" href="http://forum.35tuv.pw/">UltraVPNs Forum</a>
-	<script type="text/javascript" src="http://forum.35tuv.pw/embed/f1"></script>
+<a id="nabblelink" href="http://ultravpns-forum.30830.n8.nabble.com/">UltraVPNs Forum</a>
+<script src="http://ultravpns-forum.30830.n8.nabble.com/embed/f1"></script>
 {/literal}
 			
 							</div>
