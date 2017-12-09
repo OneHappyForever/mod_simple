@@ -26,16 +26,12 @@
 					
 				
 				</section>	
-				
-
-							
 			</div>
-			
-			
-			
 		</div>
-		
-		<!-- add your embedded forum code bellow this line -->
+		<div class="container">
+			<div class="col-lg-12 col-sm-12">
+				
+				<!-- add your embedded forum code bellow this line -->
 		
 		
 <script type="text/javascript">
@@ -45,6 +41,16 @@
 	<script src="http://forum.35tuv.pw/embed/f1"></script>
 {/literal}
 </script>
+				
+
+							
+			</div>
+			
+			
+			
+		</div>
+		
+		
 		
 
 		
