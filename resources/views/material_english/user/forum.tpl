@@ -42,6 +42,7 @@
 {literal}
 	
 	<a id="nabblelink" href="http://forum.35tuv.pw/">UltraVPNs Forum</a>
+	<script src="http://forum.35tuv.pw/embed/f1"></script>
 
 var link=document.getElementById("nabblelink");
 if (link != null) {
@@ -56,8 +57,7 @@ if (link != null) {
 {/literal}
 </script>
 		
-		<a id="nabblelink" href="http://forum.35tuv.pw/">UltraVPNs Forum</a>
-<script src="http://forum.35tuv.pw/embed/f1"></script>
+
 		
 		
 	</main>
