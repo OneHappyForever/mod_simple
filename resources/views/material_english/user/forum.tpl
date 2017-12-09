@@ -38,7 +38,7 @@
 		<!-- add your embedded forum code bellow this line -->
 		
 		<a id="nabblelink" href="http://forum.35tuv.pw/">UltraVPNs Forum</a>
-<script src="http://forum.35tuv.pw/embed/f1"></script>
+<script type="text/javascript" src="http://forum.35tuv.pw/embed/f1"></script>
 		
 		
 	</main>
