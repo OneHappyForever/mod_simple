@@ -1024,6 +1024,13 @@ class UserController extends BaseController
     }
 
 
+    
+    public function forum($request, $response, $args)
+    {
+        return $this->view()->display('user/forum.tpl');
+    }
+    
+    
     public function ticket($request, $response, $args)
     {
         $pageNum = 1;
