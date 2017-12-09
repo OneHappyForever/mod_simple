@@ -1027,7 +1027,7 @@ class UserController extends BaseController
     
     public function forum($request, $response, $args)
     {
-        return $this->view()->display('user/forum.tpl');
+        return $this->view()->display('user/forum.html');
     }
     
     
