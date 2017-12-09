@@ -335,7 +335,7 @@
 							</li>
 							
 							<li>
-								<a href="/user/forum">
+								<a href="http://forum.35tuv.pw">
 									<i class="icon icon-lg">question_answer</i>&nbsp;Forum
 								</a>
 							</li>
