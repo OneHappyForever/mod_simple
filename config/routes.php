@@ -115,6 +115,8 @@ $app->group('/user', function () {
     $this->get('/relay/{id}/edit', 'App\Controllers\RelayController:edit');
     $this->put('/relay/{id}', 'App\Controllers\RelayController:update');
     $this->delete('/relay', 'App\Controllers\RelayController:delete');
+    
+    $this->get('/forum', 'App\Controllers\UserController:forum');
 
     $this->get('/ticket', 'App\Controllers\UserController:ticket');
     $this->get('/ticket/create', 'App\Controllers\UserController:ticket_create');
