@@ -54,7 +54,10 @@
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										{$pmw}
+										<!-- {$pmw} -->
+										Our old payment gateway is currently under maintenance.
+										Please email ultravpns.com@gmail.com for payment.
+										Thank you for your cooperation and understanding.
 									</div>
 									
 								</div>
